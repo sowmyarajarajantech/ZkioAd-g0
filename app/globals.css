@@ -7,45 +7,43 @@
 /* Palette: #d8f3dc, #b7e4c7, #95d5b2, #74c69d, #52b788, #40916c, #2d6a4f, #1b4332, #081c15 */
 
 :root {
-  /* Light mode - using lighter shades as base */
+  /* Light mode - using darker shades for better contrast */
   --background: #f8fcf9;
   --foreground: #081c15;
   --card: #ffffff;
   --card-foreground: #1b4332;
   --popover: #ffffff;
   --popover-foreground: #1b4332;
-  --primary: #52b788;
+  --primary: #2d6a4f;        /* Darker green instead of #52b788 */
   --primary-foreground: #ffffff;
-  --secondary: #d8f3dc;
-  --secondary-foreground: #2d6a4f;
-  --muted: #d8f3dc;
-  --muted-foreground: #40916c;
-  --accent: #b7e4c7;
-  --accent-foreground: #1b4332;
+  --secondary: #40916c;       /* Darker instead of #d8f3dc */
+  --secondary-foreground: #ffffff;
+  --muted: #95d5b2;           /* Darker instead of #d8f3dc */
+  --muted-foreground: #1b4332; /* Darker instead of #40916c */
+  --accent: #52b788;          /* Darker instead of #b7e4c7 */
+  --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #b7e4c7;
-  --input: #d8f3dc;
-  --ring: #52b788;
-
-  /* Chart colors using the palette */
-  --chart-1: #52b788;
-  --chart-2: #40916c;
-  --chart-3: #74c69d;
-  --chart-4: #2d6a4f;
-  --chart-5: #95d5b2;
-
-  --radius: 0.625rem;
-
-  /* Sidebar */
-  --sidebar: #f8fcf9;
+  --border: #74c69d;          /* Darker instead of #b7e4c7 */
+  --input: #e8f5e9;           /* Slightly darker background */
+  --ring: #2d6a4f;            /* Darker instead of #52b788 */
+  
+  /* Chart colors - use darker shades */
+  --chart-1: #2d6a4f;
+  --chart-2: #1b4332;
+  --chart-3: #40916c;
+  --chart-4: #0d3b1f;
+  --chart-5: #52b788;
+  
+  /* Sidebar - darker greens */
+  --sidebar: #f0f7f1;
   --sidebar-foreground: #1b4332;
-  --sidebar-primary: #52b788;
+  --sidebar-primary: #2d6a4f;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d8f3dc;
-  --sidebar-accent-foreground: #2d6a4f;
-  --sidebar-border: #b7e4c7;
-  --sidebar-ring: #52b788;
+  --sidebar-accent: #52b788;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #74c69d;
+  --sidebar-ring: #2d6a4f;
 
   /* Gamification colors */
   --xp: #f59e0b;
