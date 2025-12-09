@@ -14,7 +14,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
-**[https://vercel.com/sowmyarajarajan19-5697s-projects/v0-student-skill-tracker](https://vercel.com/sowmyarajarajan19-5697s-projects/v0-student-skill-tracker)**
+**[Zkioad](https://thezkioad.vercel.app/)**
 
 ## Build your app
 
