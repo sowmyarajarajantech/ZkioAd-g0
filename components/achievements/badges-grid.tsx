@@ -10,7 +10,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import type { Badge as BadgeType } from "@/lib/types"
 import {
-  Trophy,
   Flame,
   Award,
   Star,
@@ -26,6 +25,9 @@ import {
   Compass,
   Lock,
 } from "lucide-react"
+import { ColoredBadge } from "@/components/icons/ColoredBadge"
+import { BadgeIcon } from "@/components/icons/BadgeIcon"
+import { Trophy } from "@/components/icons/Trophy"
 import { cn } from "@/lib/utils"
 import { formatDistanceToNow } from "date-fns"
 
@@ -91,7 +93,7 @@ export function BadgesGrid({ badges }: BadgesGridProps) {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
-              <Trophy className="h-5 w-5 text-[var(--badge-purple)]" />
+              <BadgeIcon className="h-5 w-5" />
               Badges
             </CardTitle>
             <Badge variant="secondary">

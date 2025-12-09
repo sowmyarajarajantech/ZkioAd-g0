@@ -1,6 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card"
 import type { Profile } from "@/lib/types"
-import { Sparkles, Flame, Trophy, Map } from "lucide-react"
+import { Trophy } from "lucide-react"
+import { ColoredXp } from "@/components/icons/ColoredXp"
+import { ColoredStreak } from "@/components/icons/ColoredStreak"
+import { ColoredRoadmap } from "@/components/icons/ColoredRoadmap"
+import { ActiveRoadmaps } from "@/components/icons/ActiveRoadmaps"
+import { BadgeIcon } from "@/components/icons/BadgeIcon"
+import { StreakIcon } from "@/components/icons/StreakIcon"
+import { XpCardIcon } from "@/components/icons/XpCardIcon"
 
 interface StatsProps {
   profile: Profile | null
@@ -11,28 +18,28 @@ interface StatsProps {
 export function DashboardStats({ profile, badgesCount, activeRoadmapsCount }: StatsProps) {
   const stats = [
     {
-      icon: Sparkles,
+      icon: XpCardIcon,
       label: "Total XP",
       value: profile?.xp_points?.toLocaleString() || "0",
       color: "text-[var(--xp-gold)]",
       bgColor: "bg-[var(--xp-gold)]/10",
     },
     {
-      icon: Flame,
+      icon: StreakIcon,
       label: "Current Streak",
       value: `${profile?.current_streak || 0} days`,
       color: "text-[var(--streak-orange)]",
       bgColor: "bg-[var(--streak-orange)]/10",
     },
     {
-      icon: Trophy,
+      icon: BadgeIcon,
       label: "Badges Earned",
       value: badgesCount.toString(),
       color: "text-[var(--badge-purple)]",
       bgColor: "bg-[var(--badge-purple)]/10",
     },
     {
-      icon: Map,
+      icon: ActiveRoadmaps,
       label: "Active Roadmaps",
       value: activeRoadmapsCount.toString(),
       color: "text-primary",

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Sparkles } from "lucide-react"
+import { XpCardIcon } from "@/components/icons/XpCardIcon"
 
 interface XPProgressProps {
   xp: number
@@ -41,7 +42,7 @@ export function XPProgress({ xp }: XPProgressProps) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-[var(--xp-gold)]" />
+          <XpCardIcon className="h-5 w-5" />
           Experience Level
         </CardTitle>
       </CardHeader>

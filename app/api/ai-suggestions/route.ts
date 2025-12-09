@@ -1,10 +1,30 @@
-import { generateText } from "ai"
-import { createClient } from "@/lib/supabase/server"
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
   try {
-    const supabase = await createClient()
+    // Create Supabase client with proper cookie handling
+    const cookieStore = await cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return cookieStore.getAll()
+          },
+          setAll(cookiesToSet) {
+            try {
+              cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
+            } catch {
+              // Ignore errors in server context
+            }
+          },
+        },
+      }
+    )
+
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -90,33 +110,84 @@ Provide recommendations in this JSON format:
   ]
 }
 
-Be specific and actionable. If they've completed foundational topics, suggest hands-on projects. If they're on a streak, encourage them to maintain it. If they haven't started, suggest beginner-friendly topics.`
+Be specific and actionable. If they've completed foundational topics, suggest hands-on projects. If they're on a streak, encourage them to maintain it. If they haven't started, suggest beginner-friendly topics. Return ONLY valid JSON, no markdown.`
 
-    const { text } = await generateText({
-      model: "openai/gpt-4o-mini",
-      prompt,
-      maxTokens: 500,
-    })
+    let recommendations = []
 
-    // Parse the JSON response
-    const jsonMatch = text.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) {
-      return NextResponse.json({
-        recommendations: [
-          {
-            type: "next_topic",
-            title: "Keep Learning!",
-            description: "Continue with your current roadmap to build momentum.",
-            reason: "Consistency is key to mastering new skills.",
+    try {
+      // Use Gemini API for dynamic suggestions
+      if (process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+        const resp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": process.env.GOOGLE_GENERATIVE_AI_API_KEY,
           },
-        ],
-      })
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt,
+                  },
+                ],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 500,
+            },
+          }),
+        })
+
+        if (!resp.ok) {
+          const errText = await resp.text()
+          console.error("Gemini API error:", resp.status, errText)
+          throw new Error(`Gemini API error: ${resp.status}`)
+        }
+
+        const result = await resp.json()
+        const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || ""
+        
+        try {
+          const cleanedText = text.replace(/```json\n?|\n?```/g, "").trim()
+          const parsed = JSON.parse(cleanedText)
+          recommendations = parsed.recommendations || []
+        } catch (parseErr) {
+          console.error("Failed to parse Gemini response:", parseErr)
+          throw new Error("Failed to parse AI response")
+        }
+      } else {
+        throw new Error("Gemini API key not configured")
+      }
+    } catch (error) {
+      console.error("AI suggestion error:", error)
+      // Return fallback recommendations if AI generation fails
+      recommendations = [
+        {
+          type: "next_topic",
+          title: "Continue Your Learning Journey",
+          description: "Pick the next topic in your active roadmap and dive in!",
+          reason: "Consistent progress builds strong foundations."
+        },
+        {
+          type: "mini_project",
+          title: "Build a Small Project",
+          description: "Apply what you've learned with a practical mini-project.",
+          reason: "Hands-on practice reinforces learning."
+        },
+        {
+          type: "streak_tip",
+          title: "Maintain Your Streak",
+          description: "Complete at least one topic today to keep your streak alive!",
+          reason: "Daily consistency is key to mastering new skills."
+        }
+      ]
     }
 
-    const parsed = JSON.parse(jsonMatch[0])
-    return NextResponse.json(parsed)
+    return NextResponse.json({ recommendations })
   } catch (error) {
-    console.error("AI suggestion error:", error)
+    console.error("Route error:", error)
     return NextResponse.json({
       recommendations: [
         {

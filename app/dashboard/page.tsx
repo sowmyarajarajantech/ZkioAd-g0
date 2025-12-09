@@ -110,7 +110,17 @@ export default async function DashboardPage() {
         {/* Right Sidebar */}
         <div className="space-y-6">
           {/* AI Suggestions Component */}
-          <AiSuggestions />
+          <AiSuggestions 
+            activeRoadmap={
+              progressWithCounts && progressWithCounts.length > 0 
+                ? {
+                    id: progressWithCounts[0].roadmap_id,
+                    title: (progressWithCounts[0].roadmap as any)?.title || "",
+                    category: (progressWithCounts[0].roadmap as any)?.category || "",
+                  }
+                : undefined
+            }
+          />
           <DashboardActivity activity={recentActivity || []} badges={userBadges || []} />
         </div>
       </div>

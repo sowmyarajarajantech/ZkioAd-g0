@@ -1,5 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Trophy, Flame, Sparkles, Target, Map, Award } from "lucide-react"
+import { Target, Award } from "lucide-react"
+import { ColoredRoadmap } from "@/components/icons/ColoredRoadmap"
+import { ColoredXp } from "@/components/icons/ColoredXp"
+import { ColoredStreak } from "@/components/icons/ColoredStreak"
+import { ColoredBadge } from "@/components/icons/ColoredBadge"
 
 interface AchievementsHeaderProps {
   stats: {
@@ -16,24 +20,24 @@ interface AchievementsHeaderProps {
 export function AchievementsHeader({ stats }: AchievementsHeaderProps) {
   const statCards = [
     {
-      icon: Sparkles,
+      icon: ColoredXp,
       label: "Total XP",
       value: stats.totalXp.toLocaleString(),
-      color: "text-[var(--xp-gold)]",
+      color: "",
       bgColor: "bg-[var(--xp-gold)]/10",
     },
     {
-      icon: Flame,
+      icon: ColoredStreak,
       label: "Current Streak",
       value: `${stats.currentStreak} days`,
-      color: "text-[var(--streak-orange)]",
+      color: "",
       bgColor: "bg-[var(--streak-orange)]/10",
     },
     {
-      icon: Trophy,
+      icon: ColoredBadge,
       label: "Badges Earned",
       value: `${stats.badgesEarned}/${stats.totalBadges}`,
-      color: "text-[var(--badge-purple)]",
+      color: "",
       bgColor: "bg-[var(--badge-purple)]/10",
     },
     {
@@ -44,10 +48,10 @@ export function AchievementsHeader({ stats }: AchievementsHeaderProps) {
       bgColor: "bg-primary/10",
     },
     {
-      icon: Map,
+      icon: ColoredRoadmap,
       label: "Roadmaps Finished",
       value: stats.roadmapsCompleted.toString(),
-      color: "text-[var(--success)]",
+      color: "",
       bgColor: "bg-[var(--success)]/10",
     },
     {

@@ -23,7 +23,7 @@ export default async function DashboardLayout({
   const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single()
 
   return (
-    <div className="min-h-screen flex bg-muted/30">
+    <div className="min-h-screen flex bg-background">
       <DashboardSidebar user={user} profile={profile} />
       <div className="flex-1 flex flex-col min-h-screen lg:ml-64">
         <DashboardHeader user={user} profile={profile} />

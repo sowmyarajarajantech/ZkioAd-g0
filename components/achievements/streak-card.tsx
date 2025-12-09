@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { DailyActivity } from "@/lib/types"
 import { Flame, TrendingUp } from "lucide-react"
+import { StreakIcon } from "@/components/icons/StreakIcon"
 import { cn } from "@/lib/utils"
 
 interface StreakCardProps {
@@ -23,7 +24,7 @@ export function StreakCard({ currentStreak, longestStreak, activity }: StreakCar
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-base">
-          <Flame className="h-5 w-5 text-[var(--streak-orange)]" />
+          <StreakIcon className="h-5 w-5" />
           Study Streak
         </CardTitle>
       </CardHeader>

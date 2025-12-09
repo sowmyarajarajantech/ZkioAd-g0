@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import type { RoadmapSection, Topic, Resource } from "@/lib/types"
-import { Map, CheckCircle2 } from "lucide-react"
+import { Target, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface TopicWithStatus extends Topic {
@@ -28,7 +28,7 @@ export function RoadmapSidebar({ sections, completedCount, totalTopics }: Roadma
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <Map className="h-5 w-5" />
+            <Target className="h-5 w-5" />
             Progress Overview
           </CardTitle>
         </CardHeader>

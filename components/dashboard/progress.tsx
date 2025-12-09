@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import type { Roadmap, UserRoadmapProgress } from "@/lib/types"
-import { ArrowRight, Map } from "lucide-react"
+import { ArrowRight, MapPin } from "lucide-react"
+import { ColoredRoadmap } from "@/components/icons/ColoredRoadmap"
 
 interface ProgressProps {
   progress: (UserRoadmapProgress & {
@@ -18,14 +19,14 @@ export function DashboardProgress({ progress }: ProgressProps) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Map className="h-5 w-5" />
+            <ColoredRoadmap className="h-5 w-5" />
             Your Progress
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-              <Map className="h-8 w-8 text-muted-foreground" />
+              <ColoredRoadmap className="h-8 w-8 text-muted-foreground" />
             </div>
             <h3 className="font-semibold mb-2">No roadmaps started yet</h3>
             <p className="text-sm text-muted-foreground mb-4">Start a learning roadmap to track your progress</p>
@@ -45,7 +46,7 @@ export function DashboardProgress({ progress }: ProgressProps) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center gap-2">
-          <Map className="h-5 w-5" />
+          <MapPin className="h-5 w-5" />
           Your Progress
         </CardTitle>
         <Button variant="ghost" size="sm" asChild>

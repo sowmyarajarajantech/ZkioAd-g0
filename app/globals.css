@@ -1,103 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-/* Applied custom green color palette from Coolors */
-/* Palette: #d8f3dc, #b7e4c7, #95d5b2, #74c69d, #52b788, #40916c, #2d6a4f, #1b4332, #081c15 */
+/* Applied custom red/taupe color palette from Coolors */
+/* Palette: #0b090a, #161a1d, #660708, #a4161a, #ba181b, #e5383b, #b1a7a6, #d3d3d3, #f5f3f4, #ffffff */
 
 :root {
   /* Light mode - using lighter shades as base */
-  --background: #f8fcf9;
-  --foreground: #081c15;
+  --background: #f5f3f4;
+  --foreground: #161a1d;
   --card: #ffffff;
-  --card-foreground: #1b4332;
+  --card-foreground: #161a1d;
   --popover: #ffffff;
-  --popover-foreground: #1b4332;
-  --primary: #52b788;
+  --popover-foreground: #161a1d;
+  --primary: #e5383b;
   --primary-foreground: #ffffff;
-  --secondary: #d8f3dc;
-  --secondary-foreground: #2d6a4f;
-  --muted: #d8f3dc;
-  --muted-foreground: #40916c;
-  --accent: #b7e4c7;
-  --accent-foreground: #1b4332;
-  --destructive: #dc2626;
+  --secondary: #d3d3d3;
+  --secondary-foreground: #161a1d;
+  --muted: #b1a7a6;
+  --muted-foreground: #0b090a;
+  --accent: #ba181b;
+  --accent-foreground: #ffffff;
+  --destructive: #a4161a;
   --destructive-foreground: #ffffff;
-  --border: #b7e4c7;
-  --input: #d8f3dc;
-  --ring: #52b788;
+  --border: #d3d3d3;
+  --input: #f5f3f4;
+  --ring: #e5383b;
 
   /* Chart colors using the palette */
-  --chart-1: #52b788;
-  --chart-2: #40916c;
-  --chart-3: #74c69d;
-  --chart-4: #2d6a4f;
-  --chart-5: #95d5b2;
+  --chart-1: #e5383b;
+  --chart-2: #ba181b;
+  --chart-3: #a4161a;
+  --chart-4: #660708;
+  --chart-5: #b1a7a6;
 
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #f8fcf9;
-  --sidebar-foreground: #1b4332;
-  --sidebar-primary: #52b788;
+  --sidebar: #f5f3f4;
+  --sidebar-foreground: #161a1d;
+  --sidebar-primary: #e5383b;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d8f3dc;
-  --sidebar-accent-foreground: #2d6a4f;
-  --sidebar-border: #b7e4c7;
-  --sidebar-ring: #52b788;
+  --sidebar-accent: #ba181b;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #d3d3d3;
+  --sidebar-ring: #e5383b;
 
   /* Gamification colors */
-  --xp: #f59e0b;
-  --streak: #ef4444;
-  --badge: #8b5cf6;
-  --success: #52b788;
+  --xp: #ba181b;
+  --streak: #e5383b;
+  --badge: #a4161a;
+  --success: #ba181b;
 }
 
 .dark {
   /* Dark mode - using darker shades as base */
-  --background: #081c15;
-  --foreground: #d8f3dc;
-  --card: #1b4332;
-  --card-foreground: #d8f3dc;
-  --popover: #1b4332;
-  --popover-foreground: #d8f3dc;
-  --primary: #52b788;
-  --primary-foreground: #081c15;
-  --secondary: #2d6a4f;
-  --secondary-foreground: #d8f3dc;
-  --muted: #2d6a4f;
-  --muted-foreground: #95d5b2;
-  --accent: #40916c;
-  --accent-foreground: #d8f3dc;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fecaca;
-  --border: #2d6a4f;
-  --input: #2d6a4f;
-  --ring: #52b788;
+  --background: #0d0f12;
+  --foreground: #f5f3f4;
+  --card: #161a1d;
+  --card-foreground: #f5f3f4;
+  --popover: #161a1d;
+  --popover-foreground: #f5f3f4;
+  --primary: #e5383b;
+  --primary-foreground: #0b090a;
+  --secondary: #660708;
+  --secondary-foreground: #f5f3f4;
+  --muted: #660708;
+  --muted-foreground: #d3d3d3;
+  --accent: #ba181b;
+  --accent-foreground: #f5f3f4;
+  --destructive: #a4161a;
+  --destructive-foreground: #f5f3f4;
+  --border: #660708;
+  --input: #660708;
+  --ring: #e5383b;
 
   /* Chart colors for dark mode */
-  --chart-1: #74c69d;
-  --chart-2: #52b788;
-  --chart-3: #95d5b2;
-  --chart-4: #40916c;
-  --chart-5: #b7e4c7;
+  --chart-1: #e5383b;
+  --chart-2: #ba181b;
+  --chart-3: #d3d3d3;
+  --chart-4: #a4161a;
+  --chart-5: #b1a7a6;
 
   /* Sidebar dark */
-  --sidebar: #0d2818;
-  --sidebar-foreground: #d8f3dc;
-  --sidebar-primary: #52b788;
-  --sidebar-primary-foreground: #081c15;
-  --sidebar-accent: #2d6a4f;
-  --sidebar-accent-foreground: #d8f3dc;
-  --sidebar-border: #2d6a4f;
-  --sidebar-ring: #52b788;
+  --sidebar: #161a1d;
+  --sidebar-foreground: #f5f3f4;
+  --sidebar-primary: #e5383b;
+  --sidebar-primary-foreground: #0b090a;
+  --sidebar-accent: #ba181b;
+  --sidebar-accent-foreground: #f5f3f4;
+  --sidebar-border: #660708;
+  --sidebar-ring: #e5383b;
 
-  /* Gamification colors - slightly adjusted for dark */
-  --xp: #fbbf24;
-  --streak: #f87171;
-  --badge: #a78bfa;
-  --success: #74c69d;
+  /* Gamification colors - adjusted for dark */
+  --xp: #e5383b;
+  --streak: #ba181b;
+  --badge: #a4161a;
+  --success: #e5383b;
 }
 
 @theme inline {
@@ -151,5 +150,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Playfair Display', serif;
   }
 }
